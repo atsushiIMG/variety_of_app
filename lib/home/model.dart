@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-final homeProvider = ChangeNotifierProvider((ref) => HomeModel());
+final homeProvider = ChangeNotifierProvider((ref) => CounterModel());
 
-class HomeModel extends ChangeNotifier {
+class CounterModel extends ChangeNotifier {
   int count = 10;
-  void plusCount() {
+  void plus() {
     count = count + 1;
     notifyListeners();
   }
 
-  void minusCount() {
+  void minus() {
     count = count - 1;
     notifyListeners();
   }

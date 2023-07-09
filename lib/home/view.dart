@@ -9,7 +9,7 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final HomeModel homeModel = ref.watch(homeProvider);
+    final CounterModel counterModel = ref.watch(homeProvider);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -17,7 +17,7 @@ class Home extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                homeModel.count.toString(),
+                counterModel.count.toString(),
                 style: TextStyle(
                   fontSize: 40,
                 ),
@@ -27,13 +27,13 @@ class Home extends ConsumerWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      homeModel.plusCount();
+                      counterModel.plus();
                     },
                     child: Text("+"),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      homeModel.minusCount();
+                      counterModel.minus();
                     },
                     child: Text("-"),
                   ),
