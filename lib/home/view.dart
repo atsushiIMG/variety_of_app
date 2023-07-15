@@ -12,10 +12,27 @@ class Home extends ConsumerWidget {
     final TimerModel timerModel = ref.watch(timerProvider);
     return Scaffold(
       body: SafeArea(
-        child: Text(
-          timerModel.minutes + ':' + timerModel.seconds,
-          style: TextStyle(
-            fontSize: 56,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                timerModel.minutes + ':' + timerModel.seconds,
+                style: TextStyle(
+                  fontSize: 56,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  timerModel.doStartOrReset();
+                },
+                child: Text(timerModel.buttonDisplay),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: timerModel.foregroundColor,
+                  backgroundColor: timerModel.backgroundColor,
+                ),
+              )
+            ],
           ),
         ),
       ),
