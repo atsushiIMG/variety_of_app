@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'home/view.dart';
+
 void main() {
   runApp(
     ProviderScope(
@@ -21,21 +23,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Home(),
-    );
-  }
-}
-
-class Home extends ConsumerWidget {
-  const Home({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: SafeArea(
-        child: Text("hello"),
-      ),
     );
   }
 }
