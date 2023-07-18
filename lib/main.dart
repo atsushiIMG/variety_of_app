@@ -1,41 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    ProviderScope(
-      child: const MyApp(),
+    MaterialApp(
+      home: const MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Home(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-class Home extends ConsumerWidget {
-  const Home({
-    super.key,
-  });
-
+class _MyAppState extends State<MyApp> {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Text("hello"),
-      ),
+      body: Text("hello"),
     );
   }
 }
