@@ -1,40 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    ProviderScope(
-      child: const MyApp(),
+    MaterialApp(
+      home: TodoAddPage(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TodoAddPage extends StatefulWidget {
+  const TodoAddPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<TodoAddPage> createState() => _TodoAddPageState();
+}
+
+class _TodoAddPageState extends State<TodoAddPage> {
+  String _text = '';
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Home(),
-    );
-  }
-}
-
-class Home extends ConsumerWidget {
-  const Home({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: SafeArea(
-        child: Text("hello"),
+      appBar: AppBar(),
+      body: Container(
+        height: 160,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextFormField(
+                textInputAction: TextInputAction.next,
+                onChanged: ((String value) {
+                  setState(() {
+                    _text = value;
+                  });
+                }),
+              ),
+              ElevatedButton(
+                onPressed: _text.isEmpty ? null : () {},
+                child: _text.isEmpty ? Text('Todoを決めよう') : Text('追加'),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
