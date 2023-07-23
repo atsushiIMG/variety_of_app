@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tmp_blog/home/model.dart';
@@ -17,19 +19,24 @@ class Home extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                timerModel.minutes + ':' + timerModel.seconds,
+                timerModel.seconds +
+                    '.' +
+                    timerModel.milliseconds +
+                    '.' +
+                    timerModel.microseconds,
                 style: TextStyle(
                   fontSize: 56,
+                  fontFeatures: [FontFeature.tabularFigures()],
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  timerModel.doStartOrReset();
+                  timerModel.doExecute();
                 },
-                child: Text(timerModel.buttonDisplay),
+                child: Text(timerModel.buttonContext.buttonDisplay),
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: timerModel.foregroundColor,
-                  backgroundColor: timerModel.backgroundColor,
+                  foregroundColor: timerModel.buttonContext.foregroundColor,
+                  backgroundColor: timerModel.buttonContext.backgroundColor,
                 ),
               )
             ],
