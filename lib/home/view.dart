@@ -33,12 +33,15 @@ class Home extends ConsumerWidget {
                 onPressed: () {
                   timerModel.doExecute();
                 },
+                onLongPress: () {
+                  timerModel.doCheat();
+                },
                 child: Text(timerModel.buttonContext.buttonDisplay),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: timerModel.buttonContext.foregroundColor,
                   backgroundColor: timerModel.buttonContext.backgroundColor,
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -8,7 +8,6 @@ final timerProvider = ChangeNotifierProvider((ref) => TimerModel());
 enum Status { start, stop, reset }
 
 class TimerModel extends ChangeNotifier {
-  late Timer _timer;
   final Stopwatch _stopwatch = Stopwatch();
   String seconds = "00";
   String milliseconds = "000";
@@ -34,7 +33,7 @@ class TimerModel extends ChangeNotifier {
 
   void _start() {
     _stopwatch.start();
-    _timer = Timer.periodic(const Duration(milliseconds: 1), (_) {
+    Timer.periodic(const Duration(milliseconds: 1), (_) {
       _refresh();
     });
     buttonContext.display(Status.start);
@@ -55,7 +54,6 @@ class TimerModel extends ChangeNotifier {
   }
 
   void doExecute() {
-    // 連続して押下することを回避
     if (nextState == Status.start) {
       _start();
     } else if (nextState == Status.stop) {
@@ -63,6 +61,26 @@ class TimerModel extends ChangeNotifier {
     } else if (nextState == Status.reset) {
       _reset();
     }
+    notifyListeners();
+  }
+
+  void doCheat() {
+    _stopwatch.start();
+    Timer.periodic(const Duration(milliseconds: 1), (timer) {
+      _refresh();
+      if (_stopwatch.elapsed.inSeconds == 3) {
+        // _stop();
+        _stop();
+        _magic();
+      }
+    });
+  }
+
+  void _magic() {
+    String str3Digits(int n) => n.toString().padLeft(3, '0');
+    seconds = str3Digits(3);
+    milliseconds = str3Digits(0);
+    microseconds = str3Digits(0);
     notifyListeners();
   }
 }
