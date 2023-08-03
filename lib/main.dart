@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tmp_blog/home/view.dart';
 
 void main() {
   runApp(
-    MaterialApp(
-      home: const MyApp(),
+    ProviderScope(
+      child: MaterialApp(
+        home: const MyApp(),
+      ),
     ),
   );
 }
@@ -18,8 +22,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text("hello"),
-    );
+    return Home();
   }
 }
